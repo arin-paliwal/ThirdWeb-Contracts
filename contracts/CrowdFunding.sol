@@ -13,7 +13,7 @@ contract CrowdFunding {
         address[] donators;
         uint256[] donations;
     }
-    mapping(uint256 => Campaign) public campaigns;
+    mapping(uint256 => Campaign) public campaigns; // creating a dictionary for Campaign
     uint256 public numberOfCampaigns = 0;
 
     function createCampaign(
@@ -39,10 +39,21 @@ contract CrowdFunding {
         numberOfCampaigns++;
         return numberOfCampaigns - 1;
     }
+    // payable - keyword to tell that via this function we will payout
+    function donateToCampaign(uint256 _id) public payable {
+        uint256 amount=msg.value;
+        Campaign storage campaign=campaigns[_id];
+        campaign.donations.push(amount);
+        campaign.donators.push(msg.sender);
+        (bool sent,)=payable(campaign.owner).call{value:amount}(""); // comma for one more param can come
+        if(sent){
+            campaign.ammountCollected=campaign.ammountCollected+amount
+        }
+    }
 
-    function donateToCampaign() {}
-
-    function getDonators() {}
+    function getDonators(uint256 _id) view public return(address[] memory,uint256[] memory) {
+        return (campaigns[_id].donators,campaigns[_id].donations);
+    }
 
     function getCampaigns() {}
 }
