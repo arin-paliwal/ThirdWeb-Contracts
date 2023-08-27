@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 const App = () => {
   return (
     <BrowserRouter>
-    <div className='flex p-4'>
+    <div className='flex p-4 bg-[#13131a] min-h-screen'>
       <div className='sm:flex hidden mr-10 relative'>
         <Sidebar/>
       </div>
