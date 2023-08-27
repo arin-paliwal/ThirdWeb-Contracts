@@ -7,7 +7,7 @@ import { navlinks } from "../constants";
 const Navbar = () => {
   const navigate = useNavigate();
   const [isActive, setisActive] = useState("dashboard");
-  const [toggleDraweer, settoggleDraweer] = useState(false);
+  const [toggleDraweer, settoggleDraweer] = useState(true);
   const address = "0X89dr6";
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -57,7 +57,7 @@ const Navbar = () => {
           onClick={() => settoggleDraweer(!toggleDraweer)}
         />
         <div
-          className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 ${toggleDraweer} ?"-translate-y-[100vh]":"translate-y-0" transition-all duration-700`}
+          className={`absolute top-[60px] right-0 left-0 bg-[#1c1c24] z-10 shadow-secondary py-4 ${toggleDraweer ?"-translate-y-[100vh]":"translate-y-0"} transition-all duration-700`}
         >
           <ul className="mb-4">
             {navlinks.map((link) => (
@@ -87,6 +87,17 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
+          <div className="flex mx-4">
+          <Button
+          btnType="button"
+          title={address ? "Create a Campaign" : "Connect"}
+          styles={address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"}
+          handleClick={() => {
+            if (address) navigate("/create-campaign");
+            else "connect()";
+          }}
+        />
+          </div>
         </div>
       </div>
     </div>
