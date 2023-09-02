@@ -68,7 +68,7 @@ const Navbar = () => {
                 }`}
                 onClick={() => {
                   setisActive(link.name);
-                  settoggleDraweer(false);
+                  settoggleDraweer(!toggleDraweer);
                   navigate(link.link);
                 }}
               >
