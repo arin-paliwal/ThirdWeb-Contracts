@@ -1,8 +1,7 @@
-import React from 'react'
 
 const CampaignDetails = () => {
-  return (
-    <div>CampaignDetails</div>
+  return(
+    <di>CampaignDetails</di>
   )
 }
 
